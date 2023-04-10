@@ -26,7 +26,6 @@ export default {
     async searchMovies({state, commit}, payload) {
       if(state.loading) return
       
-
       commit('updateState', {
         message: '',
         loading: true
@@ -71,6 +70,7 @@ export default {
     },
     async searchMoviesWithId({state, commit}, payload) {
       if(state.loading) return
+
       commit('updateState', {
         theMovie: {},
         loading: true
@@ -78,15 +78,15 @@ export default {
 
       try {
         const res = await _fetchMovie(payload)
-        commit('updatestate',{
+        commit('updateState',{
           theMovie: res.data
         })
       }catch(error) {
-        commit('updatestate',{
+        commit('updateState',{
           theMovie: {}
         })
       }finally{
-        commit('updatestate',{
+        commit('updateState',{
           loading: false
         })
       }

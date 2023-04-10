@@ -2,12 +2,13 @@
   <div
     :style=" {
       width: `${size}rem`,
-      heigth: `${size}rem`,
+      height: `${size}rem`,
       zIndex
     }"
     :class="{
       absolute,
-      fixed}"
+      fixed
+    }"
     class="spinner-border text-primary"></div>
 </template>
 
@@ -40,7 +41,7 @@ export default {
   top: 0;
   bottom: 0;
   left: 0;
-  right:0;
+  right: 0;
   &.absolute {
     position: absolute;
   }
