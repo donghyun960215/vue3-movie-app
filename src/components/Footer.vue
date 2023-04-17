@@ -19,7 +19,6 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
 footer {
   padding: 70px 0;

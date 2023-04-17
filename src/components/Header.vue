@@ -9,7 +9,7 @@
         <RouterLink
           :to="nav.href"
           active-class="active"  
-          :class="{ atcive: isMatch(nav.path) }"
+          :class="{ active: isMatch(nav.path) }"
           class="nav-link">
           {{ nav.name }}
           <!-- active-class="active" 은 원래는 router 의 기본 속성인 클래스 이름이들어가 있다. router-link-active 이렇게
@@ -26,19 +26,19 @@
       <img
         :src="image"
         :alt="name" />
-    </RouterLink> -->
+    </RouterLink>  -->
     <div
       class="user"
       @click="toAbout">
       <img
         :src="image"
         :alt="name" />
-    </div> 
+    </div>
   </header>
 </template>
 
 <script>
-import { mapState} from 'vuex'
+// import { mapState} from 'vuex'
 import Logo from '~/components/Logo'
 
 export default {
@@ -65,15 +65,20 @@ export default {
     }
   },
   computed: {
-    ...mapState('about'[
-      'image',
-      'name'
-    ]),
+    // ...mapState('about'[
+    //   'image',
+    //   'name'
+    // ]),
+    image() {
+      return this.$store.state.about.image
+    },
+    name() {
+      return this.$store.state.about.name
+    }
   },
   methods: {
     isMatch(path) {
       if(!path) return false
-      console.log(this.$route)
       return path.test(this.$route.fullPath) 
     },
     toAbout() {
@@ -84,6 +89,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 header {
   height: 70px;
   padding: 0 40px;

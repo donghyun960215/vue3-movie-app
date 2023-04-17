@@ -10,7 +10,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 .not-found {
   line-height: 1.2;
   text-align: center;
