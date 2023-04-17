@@ -78,13 +78,14 @@ module.exports = {
         { from: 'static' }
       ]
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    
   ],
 
   // 개발 서버 옵션
   devServer: {
     host: 'localhost',
-    port: 8080,
+    port: 8079,
     hot: true
   }
 }
