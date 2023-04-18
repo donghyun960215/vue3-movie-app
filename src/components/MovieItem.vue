@@ -3,11 +3,10 @@
     :to="`/movie/${movie.imdbID}`"
     :style="{backgroundImage: `url(${movie.Poster})`}"
     class="movie">
-    <Loader>
+    <Loader
       v-if="imageLoading"
       :size="1.5"
-      absolute
-    </Loader>
+      absolute />
     <div class="info">
       <div class="year">
         {{ movie.Year }}
