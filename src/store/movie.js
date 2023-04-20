@@ -61,9 +61,9 @@ export default {
             })
           }
         }
-      }catch (message) {
-        commit('updateState',{
-          movies: [],
+      }catch ({message}) {            //네트워크로 넘어오는 오기떄문에 거기에 포함된 error message는 하나의 error객체로 반환이 된다.
+        commit('updateState',{        //그래서 실제 error의 객체의 message를 사용을 하기 위해서는 error.message를 사용해여한다.
+          movies: [],                 // 하지만 객체 구조분해를 사용하여 바로 message를 가져온 후 사용을 해도된다. 속성 이름과 데이터의 이름이 같은 경우에는 합쳐도 된다.
           message
         })
       }finally {
@@ -99,26 +99,23 @@ export default {
   }    
 }
 
-function _fetchMovie(payload) {
-  const {title, type, year, page, id} = payload
-  const OMDB_API_KEY = '7035c60c'
-  const url = id
-    ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
-    : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
+async function _fetchMovie(payload) {
+  return await axios.post('/.netlify/functions/movie', payload)
 
-  return new Promise((resolve, reject) => {
-    axios.get(url)
-      .then((res) => {
-        if(res.data.Error){
-          reject(res.data.Error)
-        }
-        resolve(res)
-      })
-      .catch((err) => {
-        reject(err.message)
-      })
+  // 기존에 있던 로직이며 위의 로직은  netlify를 사용하기 위한 로직이다.
+  // return new Promise((resolve, reject) => {
+  //   axios.get(url)
+  //     .then((res) => {
+  //       if(res.data.Error){
+  //         reject(res.data.Error)
+  //       }
+  //       resolve(res)
+  //     })
+  //     .catch((err) => {
+  //       reject(err.message)
+  //     })
 
-  })
+  // })
 }
 
 /*
